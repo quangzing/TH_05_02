@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm Tra Ngày DD-MM-YYYY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        
+        input,
+        button {
+            padding: 8px;
+            margin-top: 10px;
+        }
+        
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Nhập ngày (DD-MM-YYYY):</h2>
+    <input type="text" id="dateInput" placeholder="VD: 23-07-2025">
+    <button onclick="kiemTraNgay()">Kiểm tra</button>
+
+    <div id="message"></div>
+
+    <script>
+        function kiemTraNgay() {
+            const dateStr = document.getElementById("dateInput").value;
+            const messageDiv = document.getElementById("message");
+
+            // Kiểm tra định dạng bằng Regex
+            const regex = /^(\d{2})-(\d{2})-(\d{4})$/;
+            const match = dateStr.match(regex);
+
+            if (!match) {
+                messageDiv.textContent = "❌ Sai định dạng. Định dạng đúng là DD-MM-YYYY.";
+                messageDiv.style.color = "red";
+                return;
+            }
+
+            // Kiểm tra tính hợp lệ của ngày (vd: 31-02-2024 là không hợp lệ)
+            const day = parseInt(match[1], 10);
+            const month = parseInt(match[2], 10) - 1; // JavaScript: tháng bắt đầu từ 0
+            const year = parseInt(match[3], 10);
+
+            const dateObj = new Date(year, month, day);
+            if (
+                dateObj.getFullYear() === year &&
+                dateObj.getMonth() === month &&
+                dateObj.getDate() === day
+            ) {
+                messageDiv.textContent = "✅ Ngày hợp lệ và đúng định dạng!";
+                messageDiv.style.color = "green";
+            } else {
+                messageDiv.textContent = "❌ Ngày không hợp lệ.";
+                messageDiv.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
