@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra kiểu dữ liệu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: rgb(30, 180, 135);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Kiểm tra văn bản nhập vào</h2>
+    <input type="text" id="inputText" placeholder="Nhập vào đây">
+    <button onclick="kiemTra()">Kiểm tra</button>
+
+    <div id="result"></div>
+
+    <script>
+        function kiemTra() {
+            const input = document.getElementById("inputText").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            // Kiểm tra nếu input là số
+            if (!isNaN(input) && input !== "") {
+                resultDiv.textContent = `"${input}" là SỐ.`;
+            } else {
+                resultDiv.textContent = `"${input}" là CHUỖI.`;
+            }
+        }
+    </script>
+</body>
+
+</html>
