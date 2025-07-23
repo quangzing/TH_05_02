@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra định dạng ngày</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        
+        input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .success {
+            color: green;
+        }
+        
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Kiểm tra định dạng ngày (DD/MM/YYYY)</h2>
+    <input type="text" id="dateInput" placeholder="VD: 23/07/2025">
+    <button onclick="kiemTraNgay()">Kiểm tra</button>
+
+    <div id="result"></div>
+
+    <script>
+        function kiemTraNgay() {
+            const input = document.getElementById("dateInput").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            // Biểu thức chính quy kiểm tra định dạng DD/MM/YYYY
+            const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+            if (regex.test(input)) {
+                resultDiv.textContent = `"${input}" đúng định dạng DD/MM/YYYY.`;
+                resultDiv.className = "success";
+            } else {
+                resultDiv.textContent = `"${input}" không đúng định dạng DD/MM/YYYY.`;
+                resultDiv.className = "error";
+            }
+        }
+    </script>
+</body>
+
+</html>
